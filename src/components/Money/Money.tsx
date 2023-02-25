@@ -1,20 +1,24 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { formatMoney } from '../../utils';
 
-
 function Money() {
-  const [value, setValue] = useState('1234567.8');
+  const [value, setValue] = useState('100000');
+
+  useEffect(() => {
+    if (value) {
+      setValue(formatMoney(value))
+    }
+  }, [value]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = formatMoney(event.target.value);
-    setValue(newValue);
+    setValue(event.target.value);
   };
 
   return (
     <div>
       <label>
         Money:
-        <input type="text" value={value} onChange={handleChange} /* onBlur={handleBlur} */ />
+        <input type="text" value={value} onChange={handleChange} />
       </label>
       <button onClick={() => console.log(value)}>Show console</button>
     </div>
