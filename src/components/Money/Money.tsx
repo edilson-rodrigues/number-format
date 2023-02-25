@@ -14,13 +14,15 @@ function Money() {
     setValue(event.target.value);
   };
 
+  const number = value.replace(/\./g, '').replace(/,/g, '.');
+
   return (
     <div>
       <label>
         Money:
         <input type="text" value={value} onChange={handleChange} />
       </label>
-      <button onClick={() => console.log(value)}>Show console</button>
+      <button onClick={() => console.log(Number(number))}>Show console</button>
     </div>
   );
 }
