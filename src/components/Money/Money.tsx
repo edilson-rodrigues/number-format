@@ -14,7 +14,19 @@ function Money() {
     setValue(event.target.value);
   };
 
-  const number = value.replace(/\./g, '').replace(/,/g, '.');
+
+  const showNumbers = () => {
+    const number = value.replace(',', '.').replace('.', '');
+
+    const numbers = {
+      value: Number(number),
+      formatted: value,
+    }
+
+    console.log(numbers);
+
+    alert(`Value: ${numbers.value}\nFormatted: ${numbers.formatted}`);
+  }
 
   return (
     <div>
@@ -22,7 +34,7 @@ function Money() {
         Money:
         <input type="text" value={value} onChange={handleChange} />
       </label>
-      <button onClick={() => console.log(Number(number))}>Show console</button>
+      <button onClick={showNumbers}>Show numbers</button>
     </div>
   );
 }
